@@ -72,7 +72,7 @@ func handleRequest(conn *net.TCPConn) {
 		case io.EOF:
 			buf = append(buf, req[:readLen]...)
 			flush(conn, &buf, trace)
-      return
+			return
 
 		default:
 			fmt.Printf(trace+"Error reading: %s, readLen: %d\n", err.Error(), readLen)
@@ -82,7 +82,7 @@ func handleRequest(conn *net.TCPConn) {
 	}
 }
 func flush(conn *net.TCPConn, bufPtr *[]byte, trace string) {
-  buf := *bufPtr
+	buf := *bufPtr
 	bytesWritten := 0
 	fmt.Printf(trace+"EOF. Flushing buffer of %d bytes before closing connection.\n", len(buf))
 	for bytesWritten < len(buf) {
